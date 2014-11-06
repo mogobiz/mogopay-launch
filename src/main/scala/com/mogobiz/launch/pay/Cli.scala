@@ -1,4 +1,4 @@
-package com.mogobiz.pay
+package com.mogobiz.launch.pay
 
 import com.mogobiz.pay.config.MogopayActors
 import com.mogobiz.system.BootedMogobizSystem

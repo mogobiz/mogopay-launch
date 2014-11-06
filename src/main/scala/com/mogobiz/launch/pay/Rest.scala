@@ -1,7 +1,6 @@
-package com.mogobiz.launch
+package com.mogobiz.launch.pay
 
 import akka.io.IO
-import com.mogobiz.launch.Settings
 import com.mogobiz.pay.config.{MogopayActors, MogopayRoutes}
 import com.mogobiz.system.BootedMogobizSystem
 import spray.can.Http

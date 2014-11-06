@@ -1,6 +1,4 @@
-package com.mogobiz.launch
-
-import java.io.File
+package com.mogobiz.launch.pay
 
 import com.typesafe.config.ConfigFactory
 
