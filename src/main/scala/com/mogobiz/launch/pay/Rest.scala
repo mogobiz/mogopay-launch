@@ -15,6 +15,15 @@ object Rest extends App with BootedMogobizSystem with MogopayActors with Mogopay
     com.mogobiz.session.boot.DBInitializer()
     com.mogobiz.notify.boot.DBInitializer()
   }
-
+  val banner =
+    """
+      | __  __
+      ||  \/  | ___   __ _  ___  _ __   __ _ _   _
+      || |\/| |/ _ \ / _` |/ _ \| '_ \ / _` | | | |
+      || |  | | (_) | (_| | (_) | |_) | (_| | |_| |
+      ||_|  |_|\___/ \__, |\___/| .__/ \__,_|\__, |
+      |              |___/      |_|          |___/
+      |    """.stripMargin
+  println(banner)
   IO(Http)(system) ! Http.Bind(routesServices, interface = Settings.ServerListen, port = Settings.ServerPort)
 }
