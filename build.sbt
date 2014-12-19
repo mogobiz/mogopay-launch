@@ -1,5 +1,5 @@
 name := "mogopay-launch"
 
-Revolver.settings
+//Revolver.settings
 
-mainClass in Revolver.reStart := Some("com.mogobiz.launch.pay.Rest")
+//mainClass in Revolver.reStart := Some("com.mogobiz.launch.pay.Rest")
