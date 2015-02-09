@@ -1,11 +1,11 @@
 package com.mogobiz.launch.pay
 
 import akka.io.IO
-import com.mogobiz.pay.config.{MogopayActors, MogopayRoutes}
+import com.mogobiz.pay.config.{ MogopayRoutes}
 import com.mogobiz.system.BootedMogobizSystem
 import spray.can.Http
 
-object Rest extends App with BootedMogobizSystem with MogopayActors with MogopayRoutes {
+object Rest extends App with BootedMogobizSystem with MogopayRoutes {
   com.mogobiz.pay.jobs.ImportRatesJob.start(system)
   com.mogobiz.pay.jobs.ImportCountriesJob.start(system)
   com.mogobiz.pay.jobs.CleanAccountsJob.start(system)
