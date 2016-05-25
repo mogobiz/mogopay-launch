@@ -17,8 +17,6 @@ object Rest extends App with BootedMogobizSystem with MogopayRoutes {
 
   override val bootstrap = {
     super[MogopayRoutes].bootstrap()
-    com.mogobiz.session.boot.DBInitializer()
-    com.mogobiz.notify.boot.DBInitializer()
   }
   val banner =
     """
