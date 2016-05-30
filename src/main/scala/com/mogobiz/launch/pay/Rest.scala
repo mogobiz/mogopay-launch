@@ -5,11 +5,12 @@
 package com.mogobiz.launch.pay
 
 import akka.io.IO
-import com.mogobiz.pay.config.{ MogopayRoutes }
+import com.mogobiz.pay.config.MogopayRoutes
 import com.mogobiz.system.BootedMogobizSystem
+import com.typesafe.scalalogging.slf4j.LazyLogging
 import spray.can.Http
 
-object Rest extends App with BootedMogobizSystem with MogopayRoutes {
+object Rest extends App with BootedMogobizSystem with MogopayRoutes with LazyLogging {
   com.mogobiz.pay.jobs.ImportRatesJob.start(system)
   com.mogobiz.pay.jobs.ImportCountriesJob.start(system)
   com.mogobiz.pay.jobs.CleanAccountsJob.start(system)
@@ -27,6 +28,6 @@ object Rest extends App with BootedMogobizSystem with MogopayRoutes {
       ||_|  |_|\___/ \__, |\___/| .__/ \__,_|\__, |
       |              |___/      |_|          |___/
       |    """.stripMargin
-  println(banner)
+  logger.info(banner)
   IO(Http)(system) ! Http.Bind(routesServices, interface = Settings.ServerListen, port = Settings.ServerPort)
 }
