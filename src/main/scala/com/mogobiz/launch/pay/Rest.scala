@@ -7,10 +7,12 @@ package com.mogobiz.launch.pay
 import akka.io.IO
 import com.mogobiz.pay.config.MogopayRoutes
 import com.mogobiz.system.BootedMogobizSystem
-import com.typesafe.scalalogging.slf4j.LazyLogging
+import com.typesafe.scalalogging.slf4j.{ LazyLogging, Logger }
+import org.slf4j.LoggerFactory
 import spray.can.Http
 
-object Rest extends App with BootedMogobizSystem with MogopayRoutes with LazyLogging {
+object Rest extends App with BootedMogobizSystem with MogopayRoutes {
+  val logger = Logger(LoggerFactory.getLogger("com.mogobiz.launch.pay.Rest"))
   com.mogobiz.pay.jobs.ImportRatesJob.start(system)
   com.mogobiz.pay.jobs.ImportCountriesJob.start(system)
   com.mogobiz.pay.jobs.CleanAccountsJob.start(system)
