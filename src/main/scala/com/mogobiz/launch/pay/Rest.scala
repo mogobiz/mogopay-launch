@@ -7,7 +7,7 @@ package com.mogobiz.launch.pay
 import akka.io.IO
 import com.mogobiz.pay.config.MogopayRoutes
 import com.mogobiz.system.BootedMogobizSystem
-import com.typesafe.scalalogging.slf4j.{ LazyLogging, Logger }
+import com.typesafe.scalalogging.{ StrictLogging, Logger }
 import org.slf4j.LoggerFactory
 import spray.can.Http
 
