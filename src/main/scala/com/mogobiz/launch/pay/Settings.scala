@@ -9,6 +9,6 @@ import com.typesafe.config.ConfigFactory
 object Settings {
   private val config = ConfigFactory.load().withFallback(ConfigFactory.load("default-application.conf"))
 
-  val ServerListen = config.getString("spray.interface")
-  val ServerPort = config.getInt("spray.port")
+  val Interface = config.getString("spray.interface")
+  val Port = config.getInt("spray.port")
 }

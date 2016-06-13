@@ -4,12 +4,11 @@
 
 package com.mogobiz.launch.pay
 
-import akka.io.IO
+import akka.http.scaladsl.Http
 import com.mogobiz.pay.config.MogopayRoutes
 import com.mogobiz.system.BootedMogobizSystem
-import com.typesafe.scalalogging.{ StrictLogging, Logger }
+import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
-import spray.can.Http
 
 object Rest extends App with BootedMogobizSystem with MogopayRoutes {
   val logger = Logger(LoggerFactory.getLogger("com.mogobiz.launch.pay.Rest"))
@@ -31,5 +30,6 @@ object Rest extends App with BootedMogobizSystem with MogopayRoutes {
       |              |___/      |_|          |___/
       |    """.stripMargin
   logger.info(banner)
-  IO(Http)(system) ! Http.Bind(routesServices, interface = Settings.ServerListen, port = Settings.ServerPort)
+  Http().bindAndHandle(routes, Settings.Interface, Settings.Port)
+
 }
