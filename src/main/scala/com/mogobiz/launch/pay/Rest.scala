@@ -7,7 +7,7 @@ package com.mogobiz.launch.pay
 import akka.io.IO
 import com.mogobiz.pay.config.MogopayRoutes
 import com.mogobiz.system.BootedMogobizSystem
-import com.typesafe.scalalogging.{ StrictLogging, Logger }
+import com.typesafe.scalalogging.{StrictLogging, Logger}
 import org.slf4j.LoggerFactory
 import spray.can.Http
 
@@ -21,8 +21,7 @@ object Rest extends App with BootedMogobizSystem with MogopayRoutes {
   override val bootstrap = {
     super[MogopayRoutes].bootstrap()
   }
-  val banner =
-    """
+  val banner = """
       | __  __
       ||  \/  | ___   __ _  ___  _ __   __ _ _   _
       || |\/| |/ _ \ / _` |/ _ \| '_ \ / _` | | | |
