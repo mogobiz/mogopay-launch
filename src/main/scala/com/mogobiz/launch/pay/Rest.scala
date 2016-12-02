@@ -16,7 +16,6 @@ object Rest extends App with BootedMogobizSystem with MogopayRoutes {
   com.mogobiz.pay.jobs.ImportRatesJob.start(system)
   com.mogobiz.pay.jobs.ImportCountriesJob.start(system)
   com.mogobiz.pay.jobs.CleanAccountsJob.start(system)
-  com.mogobiz.pay.jobs.RefundJob.start(system)
 
   override val bootstrap = {
     super[MogopayRoutes].bootstrap()
