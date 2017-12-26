@@ -4,15 +4,17 @@
 
 package com.mogobiz.launch.pay
 
-import akka.io.IO
+import akka.http.scaladsl.Http
 import com.mogobiz.pay.config.MogopayRoutes
 import com.mogobiz.system.BootedMogobizSystem
-import com.typesafe.scalalogging.{StrictLogging, Logger}
-import org.slf4j.LoggerFactory
-import spray.can.Http
+import com.typesafe.scalalogging.LazyLogging
 
-object Rest extends App with BootedMogobizSystem with MogopayRoutes {
-  val logger = Logger(LoggerFactory.getLogger("com.mogobiz.launch.pay.Rest"))
+object Rest
+    extends App
+    with BootedMogobizSystem
+    with MogopayRoutes
+    with LazyLogging {
+
   com.mogobiz.pay.jobs.ImportRatesJob.start(system)
   com.mogobiz.pay.jobs.ImportCountriesJob.start(system)
   com.mogobiz.pay.jobs.CleanAccountsJob.start(system)
@@ -20,7 +22,8 @@ object Rest extends App with BootedMogobizSystem with MogopayRoutes {
   override val bootstrap = {
     super[MogopayRoutes].bootstrap()
   }
-  val banner = """
+  val banner =
+    """
       | __  __
       ||  \/  | ___   __ _  ___  _ __   __ _ _   _
       || |\/| |/ _ \ / _` |/ _ \| '_ \ / _` | | | |
@@ -29,5 +32,5 @@ object Rest extends App with BootedMogobizSystem with MogopayRoutes {
       |              |___/      |_|          |___/
       |    """.stripMargin
   logger.info(banner)
-  IO(Http)(system) ! Http.Bind(routesServices, interface = Settings.ServerListen, port = Settings.ServerPort)
+  Http().bindAndHandle(routes, Settings.ServerListen, Settings.ServerPort)
 }
